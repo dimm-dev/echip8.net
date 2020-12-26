@@ -1,0 +1,14 @@
+{
+  "name": "echip8",
+  "dockerFile": "Dockerfile", // Path to docker file
+  "runArgs": [ ],
+  "forwardPorts": [ ],
+  "extensions": [
+    "ms-dotnettools.csharp",
+    "derivitec-ltd.vscode-dotnet-adapter",
+    "ms-azuretools.vscode-docker"
+  ],
+  "settings": {
+  },
+  "postCreateCommand": ""
+}

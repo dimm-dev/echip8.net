@@ -1,0 +1,26 @@
+{
+    "configurations": [
+    {
+        "name": "Emulator.ConsoleTestApp",
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": "build",
+        "program": "${workspaceFolder}/Emulator.ConsoleTestApp/bin/Debug/netcoreapp3.1/Emulator.ConsoleTestApp.dll",
+        "args": [],
+        "cwd": "${workspaceFolder}/Emulator.ConsoleTestApp",
+        "stopAtEntry": false,
+        "console": "internalConsole"
+    },
+    {
+        "name": "Emulator.Ncurses",
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": "build",
+        "program": "${workspaceFolder}/Emulator.Ncurses/bin/Debug/netcoreapp3.1/Emulator.Ncurses.dll",
+        "args": [],
+        "cwd": "${workspaceFolder}/Emulator.Ncurses",
+        "stopAtEntry": false,
+        "console": "internalConsole"
+    }
+]
+}
