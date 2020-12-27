@@ -54,7 +54,7 @@ namespace Emulator.Core.Units.DecoderHelpers
         private readonly IInstructionConfigurator _configurator;
         private InstructionComponents _instructionParts = new InstructionComponents();
 
-        public event Action<Int16> UnknownInstructionFoundEvent = delegate { };
+        public event Action<Int16> UnknownInstructionFoundEvent;
 
         public InstructionParser(IInstructionConfigurator configurator) => _configurator = configurator;
 
@@ -72,7 +72,7 @@ namespace Emulator.Core.Units.DecoderHelpers
 
         private static ICPUInstruction ProcessUnknownInstruction(InstructionComponents instructionParts, IInstructionConfigurator configurator, Action<Int16> unknownInstructionHandler)
         {
-            unknownInstructionHandler((Int16)(instructionParts.Octets.Low << 8 | instructionParts.Octets.Low));
+            unknownInstructionHandler?.Invoke((Int16)(instructionParts.Octets.Low << 8 | instructionParts.Octets.Low));
             return null;
         }
 

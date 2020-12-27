@@ -37,7 +37,7 @@ namespace Emulator.Core.Units
             if (_current < End - InstructionSize)
                 _current += InstructionSize;
             else
-                InstructionPointerOutOfRange((Int16)(_current + InstructionSize));
+                InstructionPointerOutOfRange?.Invoke((Int16)(_current + InstructionSize));
 
             return _current;
         }
@@ -47,7 +47,7 @@ namespace Emulator.Core.Units
             if (_current >= Start + InstructionSize)
                 _current -= InstructionSize;
             else
-                InstructionPointerOutOfRange((Int16)(_current - InstructionSize));
+                InstructionPointerOutOfRange?.Invoke((Int16)(_current - InstructionSize));
 
             return _current;
         }
@@ -57,14 +57,14 @@ namespace Emulator.Core.Units
             if ((address >= Start) && (address < End) && ((End - address - 1) % InstructionSize == 0))
             {
                 _current = address;
-                OnJump(_current);
+                OnJump?.Invoke(_current);
             }
             else
-                InstructionPointerOutOfRange(address);
+                InstructionPointerOutOfRange?.Invoke(address);
         }
 
-        public event Action<Int16> OnJump = delegate {};
+        public event Action<Int16> OnJump;
     
-        public event Action<Int16> InstructionPointerOutOfRange = delegate {};
+        public event Action<Int16> InstructionPointerOutOfRange;
     }
 }

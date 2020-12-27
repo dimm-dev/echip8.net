@@ -17,13 +17,13 @@ namespace Emulator.Core.Units
         {
             if ((value & 0xF000) != 0)
             {
-                AddressRegisterInvalidAddress(value);
+                AddressRegisterInvalidAddress?.Invoke(value);
                 return _value;
             }
 
             return value;
         }
 
-        public event Action<Int16> AddressRegisterInvalidAddress = delegate {};
+        public event Action<Int16> AddressRegisterInvalidAddress;
     }
 }

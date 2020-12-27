@@ -31,7 +31,7 @@ namespace Emulator.Core.Units
             }
             else
             {
-                StackOverflow();
+                StackOverflow?.Invoke();
             }
         }
 
@@ -46,14 +46,14 @@ namespace Emulator.Core.Units
             else
             {
                 val = _stack[0];
-                StackUnderflow();
+                StackUnderflow?.Invoke();
             }
             return val;
         }
 
         public void Reset() => _pos = 0;
 
-        public event Action StackOverflow = delegate {};
-        public event Action StackUnderflow = delegate {};
+        public event Action StackOverflow;
+        public event Action StackUnderflow;
     }
 }
