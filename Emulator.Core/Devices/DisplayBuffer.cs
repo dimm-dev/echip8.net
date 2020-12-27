@@ -39,7 +39,7 @@ namespace Emulator.Core
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    xorred += Convert.ToInt32((sprite[spriteOffset + j] + _buffer[bufferOffset + j]) == 2);
+                    xorred += Convert.ToInt32((sprite[spriteOffset + j] + _buffer[bufferOffset + j]) == 0);
                     _buffer[bufferOffset + j] ^= sprite[spriteOffset + j];
                 }
                 spriteOffset += 8;
