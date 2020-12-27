@@ -8,14 +8,14 @@ namespace Emulator.Core
         public ICentralProcessingUnit CPU { get; }
         public IMemoryManagementUnit MMU { get; }
         public ISystemBridge Bridge { get; }
-        public IKeyboard Keyboard { get; }
+        public IKeyboardDataSource Keyboard { get; }
         public IDisplay Display { get; }
 
         public Chip8Device(
             ICentralProcessingUnit cpu,
             IMemoryManagementUnit mmu,
             ISystemBridge systemBridge,
-            IKeyboard keyboard,
+            IKeyboardDataSource keyboard,
             IDisplay display)
 
         {

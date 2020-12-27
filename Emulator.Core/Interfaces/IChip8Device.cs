@@ -7,7 +7,7 @@ namespace Emulator.Core.Interfaces.Units
         ICentralProcessingUnit CPU { get; }
         IMemoryManagementUnit MMU { get; }
         ISystemBridge Bridge { get; }
-        IKeyboard Keyboard { get; }
+        IKeyboardDataSource Keyboard { get; }
         IDisplay Display { get; }
 
         void Reset();
