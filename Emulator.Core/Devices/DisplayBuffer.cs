@@ -6,6 +6,7 @@ namespace Emulator.Core
 {
     public class DisplayBuffer : IDisplay
     {
+        private const int SpriteWidth = 8;
         public Byte Width { get; }
         public Byte Height { get; }
 
@@ -33,22 +34,34 @@ namespace Emulator.Core
         {
             // TODO: check spriteBytesCount % 8 == 0 ?
             int bufferOffset = y * Width + x;
-            int spriteOffset = 0;
-            int xorred = 0;
-            for (; spriteBytesCount > 0; spriteBytesCount -= 8, y++)
+            int xorred = UpdateBuffer(sprite, spriteBytesCount, bufferOffset);
+            if (xorred > 0)
             {
-                for (int j = 0; j < 8; j++)
+                _contentVersion++;
+                DisplayUpdateEvent?.Invoke(bufferOffset, spriteBytesCount);
+            }
+            return xorred > 0;
+        }
+
+        private int UpdateBuffer(Byte[] sprite, int spriteBytesCount, int bufferOffset)
+        {
+            int xorred = 0;
+            int spriteOffset = 0;
+            for (; spriteBytesCount > 0; spriteBytesCount -= 8)
+            {
+                for (int j = 0; j < SpriteWidth; j++)
                 {
                     xorred += Convert.ToInt32((sprite[spriteOffset + j] + _buffer[bufferOffset + j]) == 0);
                     _buffer[bufferOffset + j] ^= sprite[spriteOffset + j];
                 }
-                spriteOffset += 8;
+                spriteOffset += SpriteWidth;
                 bufferOffset += Width;
             }
-            _contentVersion++; 
-            return xorred > 0;
+            return xorred;
         }
 
         public Byte this[int index] => _buffer[index];
+
+        public event Action<int, int> DisplayUpdateEvent;
     }
 }

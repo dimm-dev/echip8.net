@@ -9,5 +9,11 @@ namespace Emulator.Core.Interfaces.Periphery
 
         void Clear();
         bool DrawSpriteXOR(Byte[] sprite, int spriteBytesCount, Byte x, Byte y);
+
+        /// <summary>
+        /// First event parameter is start video buffer position.
+        /// Second event parameter is length of changed buffer.
+        /// </summary>
+        event Action<int, int> DisplayUpdateEvent;
     }
 }
